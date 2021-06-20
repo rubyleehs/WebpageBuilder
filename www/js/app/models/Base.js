@@ -1,10 +1,13 @@
-define(function () {
-    function modelBase(title) {
+define(function ()
+{
+    function modelBase(title)
+    {
         this.title = title;
     }
 
     modelBase.prototype = {
-        getTitle: function () {
+        getTitle: function ()
+        {
             return this.title;
         }
     };

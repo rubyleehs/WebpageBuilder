@@ -1,4 +1,5 @@
-define(function (require) {
+define(function (require)
+{
     var $ = require('jquery'),
         lib = require('./lib'),
         controller = require('./controllers/c1'),
@@ -7,7 +8,8 @@ define(function (require) {
     //A fabricated API to show interaction of
     //common and specific pieces.
     controller.setModel(model);
-    $(function () {
+    $(function ()
+    {
         controller.render(lib.getBody());
     });
 });

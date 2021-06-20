@@ -1,16 +1,20 @@
-define(function () {
-    function controllerBase(id) {
+define(function ()
+{
+    function controllerBase(id)
+    {
         this.id = id;
     }
 
     controllerBase.prototype = {
-        setModel: function (model) {
+        setModel: function (model)
+        {
             this.model = model;
         },
 
-        render: function (bodyDom) {
+        render: function (bodyDom)
+        {
             bodyDom.prepend('<h1>Controller ' + this.id + ' says "' +
-                      this.model.getTitle() + '"</h1>');
+                this.model.getTitle() + '"</h1>');
         }
     };
 

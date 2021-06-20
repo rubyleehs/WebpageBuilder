@@ -1,6 +1,8 @@
-define(['jquery'], function ($) {
+define(['jquery'], function ($)
+{
     return {
-        getBody: function () {
+        getBody: function ()
+        {
             return $('body');
         }
     }
