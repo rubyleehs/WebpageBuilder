@@ -1,8 +1,8 @@
 define(function (require) {
     var $ = require('jquery'),
         lib = require('./lib'),
-        controller = require('./controller/c1'),
-        model = require('./model/m1');
+        controller = require('./controllers/c1'),
+        model = require('./models/m1');
 
     //A fabricated API to show interaction of
     //common and specific pieces.
