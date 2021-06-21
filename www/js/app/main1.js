@@ -3,23 +3,21 @@ define(function (require)
     var $ = require('jquery'),
         lib = require('./lib'),
         controller = require('./controllers/c1'),
-        model = require('./models/MDraggable');
+        models = [require('./models/MDraggable'), require('./models/MDraggableAcceptor')];
 
-
-    //A fabricated API to show interaction of
-    //common and specific pieces.
-    controller.setModel(model);
+    //It is possible to make it so the classname can be just a list of models lol.
+    controller.setModel(models[0]);
     $(function ()
     {
-        var modelArr = $("*[class^='m']");
-        console.log(modelArr[0]);
-
-        for (var i = 0; i < modelArr.length; i++)
+        for (let i = 0; i < models.length; i++)
         {
-            let tempModel = new model();
-            tempModel.init(modelArr[i]);
+            let domElements = $(`*[model='${models[i].name}']`);
+            for (let ii = 0; ii < domElements.length; ii++)
+            {
+                let tempModel = new models[i]();
+                tempModel.init(domElements[ii]);
+            }
         }
-
 
         controller.render(lib.getBody());
     });

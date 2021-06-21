@@ -1,4 +1,4 @@
-define(['mixwith'], function (mixwith)
+define([], function ()
 {
     let DraggableMixin = (superclass) => class extends superclass
     {
@@ -6,22 +6,11 @@ define(['mixwith'], function (mixwith)
         {
             console.log("pong");
         }
-        allowDrop = function (event)
-        {
-            event.preventDefault();
-        }
         drag = function (event)
         {
             console.log("drag detected");
             event.dataTransfer.setData("text", event.target.id);
         }
-        drop = function (event)
-        {
-            event.preventDefault();
-            var data = event.dataTransfer.getData("text");
-            event.target.appendChild(document.getElementById(data));
-        }
-
     }
 
     return DraggableMixin;

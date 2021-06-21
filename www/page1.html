@@ -4,14 +4,15 @@
 <head>
     <title>Page 1</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <script data-main="js/page1" src="js/lib/require.js"></script>
 </head>
 
 <body>
-    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="div1" model="MDraggableAcceptor"></div>
+    <div id="div2" model="MDraggableAcceptor"></div>
 
-    <img src="img/githubLogo.png" class="mDraggable" draggable="true" id="drag1">
+    <img src="img/githubLogo.png" id="drag1" model="MDraggable">
     <a href="page2.html">Go to Page 2</a>
 </body>
 
