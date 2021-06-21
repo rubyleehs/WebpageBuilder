@@ -1,33 +1,18 @@
-define(['./ModelBase'], function mDraggable(ModelBase)
+define(['./ModelBase', './DraggableMixin', 'mixwith'], function (ModelBase, DraggableMixin, mw)
 {
-    class mDraggable extends ModelBase
-    {
+    class MDraggable extends mw.mix(ModelBase).with(DraggableMixin) {
         constructor()
         {
-            super('Draggable Model')
-        }
-        ping()
-        {
-            return 'pong';
-        }
-        allowDrop(event)
-        {
-            event.preventDefault();
-        }
-        drag(event)
-        {
-            event.dataTransfer.setData("text", event.target.id);
-        }
-        drop(event)
-        {
-            event.preventDefault();
-            var data = event.dataTransfer.getData("text");
-            event.target.appendChild(document.getElementById(data));
+            super("Draggable Model");
         }
 
+        init = function (domElement)
+        {
+            domElement.addEventListener('dragstart', this.drag);
+        }
     }
 
-    return mDraggable;
+    return MDraggable;
 });
 
 

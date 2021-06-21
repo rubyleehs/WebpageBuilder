@@ -7,20 +7,19 @@ define(function ()
             this.modelName = modelName;
             this.modelHtml = "";
         }
-        getModelName()
+
+        getModelName = function ()
         {
             return this.modelName;
         }
-
-        getModelHtml()
+        getModelHtml = function ()
         {
             return this.modelHtml;
         }
-        setModelHtml(html)
+        setModelHtml = function (html)
         {
             this.modelHtml = html;
         }
-
     }
 
     return ModelBase;
