@@ -1,5 +1,5 @@
-define(['./Base'], function (Base)
+define(['./ControllerBase'], function (ControllerBase)
 {
-    var c2 = new Base('Controller 2');
+    var c2 = new ControllerBase('Controller 2');
     return c2;
 });
