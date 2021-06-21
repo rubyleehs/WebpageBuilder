@@ -10,6 +10,7 @@ define(['./ModelBase', './DraggableMixin', 'mixwith'], function (ModelBase, Drag
         {
             domElement.addEventListener('dragstart', this.drag);
             domElement.setAttribute("draggable", "true");
+            domElement.setAttribute("style", "position:relative; left: 0; up:0;");
         }
     }
 
