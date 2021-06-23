@@ -4,15 +4,16 @@ define([], function ()
     {
         rescale = (event, domElement) =>
         {
-            if (this.isZooming())
+            if ((domElement == document.activeElement || domElement.contains(document.activeElement)) && this.isZooming())
             {
+                event.preventDefault();
                 domElement.style.transform = `scale(${this.pxRatio})`
             }
         }
 
-        isZooming = function ()  
+        isZooming = () =>  
         {
-            let newPxRatio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;
+            let newPxRatio = this.calculateZoomRatio();
             if (this.pxRatio != newPxRatio)
             {
                 this.pxRatio = newPxRatio;
@@ -23,6 +24,11 @@ define([], function ()
                 console.log("just resizing");
                 return false;
             }
+        }
+
+        calculateZoomRatio = function ()
+        {
+            return window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;
         }
     }
 

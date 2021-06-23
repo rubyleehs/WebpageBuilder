@@ -1,6 +1,6 @@
-define(['mixwith', './ModelBase', './ScalableMixin'], function (mw, ModelBase, ScalableMixin)
+define(['mixwith', './ModelBase', './DraggableAcceptorMixin', './ScalableMixin'], function (mw, ModelBase, DraggableAcceptorMixin, ScalableMixin)
 {
-    class MFakeScreen extends mw.mix(ModelBase).with(ScalableMixin) {
+    class MFakeScreen extends mw.mix(ModelBase).with(DraggableAcceptorMixin, ScalableMixin) {
         constructor(domElement)
         {
             super("Fake Screen Model", domElement);
@@ -9,7 +9,10 @@ define(['mixwith', './ModelBase', './ScalableMixin'], function (mw, ModelBase, S
         init = function ()
         {
             $(window).on('resize', (event) => { this.rescale(event, this.domElement) });
-            this.domElement.setAttribute("style", "scale(1.00);");
+            this.domElement.addEventListener('drop', (event) => { this.drop(event, this.domElement) });
+            this.domElement.addEventListener('dragover', this.allowDrop);
+            this.domElement.setAttribute("style", `scale(${this.calculateZoomRatio()});`);
+            this.domElement.setAttribute("tabindex", 0);
         }
     }
 
