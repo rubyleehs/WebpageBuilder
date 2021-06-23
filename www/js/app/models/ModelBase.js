@@ -2,23 +2,26 @@ define(function ()
 {
     class ModelBase
     {
-        constructor(modelName)
+        constructor(modelName, domElement)
         {
             this.modelName = modelName;
-            this.modelHtml = "";
+            this.domElement = domElement;
         }
 
         getModelName = function ()
         {
             return this.modelName;
         }
-        getModelHtml = function ()
+
+        getDomElement = function ()
         {
-            return this.modelHtml;
+            return this.domElement;
         }
-        setModelHtml = function (html)
+
+        init = function ()
         {
-            this.modelHtml = html;
+            //This function should be used to add listeners to stuff and set DomElementAttributes.
+            console.log("Missing init() in model, likely missing listeners. Please declare in model and override this message");
         }
     }
 

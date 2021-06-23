@@ -1,6 +1,6 @@
-#div1, #div2{
-    width: 20%;
-    height: 100px;
+#div1, #div2, #divScale{
+    width: 50%;
+    height: 400px;
     margin: 10px;
     padding: 10px;
     border: 1px solid black;

@@ -1,15 +1,15 @@
-define(['./ModelBase', './DraggableAcceptorMixin', 'mixwith'], function (ModelBase, DraggableAcceptorMixin, mw)
+define(['mixwith', './ModelBase', './DraggableAcceptorMixin'], function (mw, ModelBase, DraggableAcceptorMixin)
 {
     class MDraggableAcceptor extends mw.mix(ModelBase).with(DraggableAcceptorMixin) {
-        constructor()
+        constructor(domElement)
         {
-            super("Draggable Acceptor Model");
+            super("Draggable Acceptor Model", domElement);
         }
 
-        init = function (domElement)
+        init = function ()
         {
-            domElement.addEventListener('drop', this.drop);
-            domElement.addEventListener('dragover', this.allowDrop);
+            this.domElement.addEventListener('drop', (event) => { this.drop(event, this.domElement) });
+            this.domElement.addEventListener('dragover', this.allowDrop);
         }
     }
 

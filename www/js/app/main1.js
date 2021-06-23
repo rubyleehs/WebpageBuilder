@@ -3,7 +3,7 @@ define(function (require)
     var $ = require('jquery'),
         lib = require('./lib'),
         controller = require('./controllers/c1'),
-        models = [require('./models/MDraggable'), require('./models/MDraggableAcceptor')];
+        models = [require('./models/MDraggable'), require('./models/MDraggableAcceptor'), require('./models/MFakeScreen')];
 
     //It is possible to make it so DOM elements have multiple models attached lol
     controller.setModel(models[0]);
@@ -14,8 +14,7 @@ define(function (require)
             let domElements = $(`*[model='${models[i].name}']`);
             for (let ii = 0; ii < domElements.length; ii++)
             {
-                let tempModel = new models[i]();
-                tempModel.init(domElements[ii]);
+                new models[i](domElements[ii]).init();
             }
         }
 

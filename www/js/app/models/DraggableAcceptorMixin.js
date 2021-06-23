@@ -6,24 +6,24 @@ define([], function ()
         {
             event.preventDefault();
         }
-        drop = function (event)
+        drop = function (event, targetDomEle)
         {
             event.preventDefault();
             let data = event.dataTransfer.getData("text/plain").split(',');
-            for (let i = 1; i < data.length; i++)
-            {
-                data[i] = parseInt(data[i]) || 0;
-            }
             let draggableEle = document.getElementById(data[0]);
-            console.log((event.clientY) + " + " + data[2] + "-" + event.target.offsetTop + " = " + (event.clientY + data[2] - event.target.offsetTop));
-            draggableEle.style.left = (event.clientX + data[1] - event.target.offsetLeft) + 'px';
-            draggableEle.style.top = (event.clientY + data[2] - event.target.offsetTop) + 'px';
-            console.log(event.target);
-            console.log(draggableEle.parentNode);
-            if (!(event.target === draggableEle.parentNode))
-            {
-                event.target.appendChild(draggableEle);
-            }
+            //let domElement = event.currentTarget;
+
+            if (targetDomEle === draggableEle) targetDomEle = draggableEle.parentNode; // So you cannot drop it on itself
+
+            let targetBounds = targetDomEle.getBoundingClientRect();
+
+            // (event.clientX - targetBounds.x) is the distance between mouse and left edge of drop target
+            // data[1] is the distance between the grab location and the left edge of the thing that is being grabbed
+            // (event.clientX - targetBounds.x - parseFloat(data[1]) is the distance bewtween the target left edge and the grabbed thing left edge
+            draggableEle.style.left = ((event.clientX - targetBounds.x - parseFloat(data[1])) / targetBounds.width) * 100 + '%';
+            draggableEle.style.top = ((event.clientY - targetBounds.y - parseFloat(data[2])) / targetBounds.height) * 100 + '%';
+
+            targetDomEle.appendChild(draggableEle);
         }
     }
     return DraggableAcceptorMixin;

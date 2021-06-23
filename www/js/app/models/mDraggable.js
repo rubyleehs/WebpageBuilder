@@ -1,16 +1,16 @@
-define(['./ModelBase', './DraggableMixin', 'mixwith'], function (ModelBase, DraggableMixin, mw)
+define(['mixwith', './ModelBase', './DraggableMixin'], function (mw, ModelBase, DraggableMixin)
 {
     class MDraggable extends mw.mix(ModelBase).with(DraggableMixin) {
-        constructor()
+        constructor(domElement)
         {
-            super("Draggable Model");
+            super("Draggable Model", domElement);
         }
 
-        init = function (domElement)
+        init = function ()
         {
-            domElement.addEventListener('dragstart', this.drag);
-            domElement.setAttribute("draggable", "true");
-            domElement.setAttribute("style", "position:relative; left: 0; up:0;");
+            this.domElement.addEventListener('dragstart', this.drag);
+            this.domElement.setAttribute("draggable", "true");
+            this.domElement.setAttribute("style", "position:relative; left: 0; up:0; float:left;");
         }
     }
 
