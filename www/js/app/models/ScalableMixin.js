@@ -1,8 +1,8 @@
 define([], function ()
 {
-    const scaleSpeedDelta = 0.1;
+    const scaleSpeedDelta = 0.05;
     const minScale = 0.1;
-    const maxScale = 4.0
+    const maxScale = 8.0
     let ScalableMixin = (superclass) => class extends superclass
     {
         rescale = (scrollEvent) =>
