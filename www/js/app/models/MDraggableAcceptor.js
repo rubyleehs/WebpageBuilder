@@ -9,7 +9,7 @@ define(['mixwith', './ModelBase', './DraggableAcceptorMixin'], function (mw, Mod
         init = function ()
         {
             this.domElement.addEventListener('drop', (event) => { this.drop(event, this.domElement) });
-            this.domElement.addEventListener('dragover', this.allowDrop);
+            this.domElement.addEventListener('dragover', (event) => { this.allowDrop(event, this.domElement) });
         }
     }
 

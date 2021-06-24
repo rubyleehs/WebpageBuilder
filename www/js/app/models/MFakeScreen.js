@@ -10,7 +10,7 @@ define(['mixwith', './ModelBase', './DraggableAcceptorMixin', './ScalableMixin']
         {
             this.domElement.addEventListener('wheel', this.rescale);
             this.domElement.addEventListener('drop', (event) => { this.drop(event, this.domElement) });
-            this.domElement.addEventListener('dragover', this.allowDrop);
+            this.domElement.addEventListener('dragover', (event) => { this.allowDrop(event, this.domElement) });
             this.domElement.setAttribute("style", `transform: scale(1);`);
             this.domElement.setAttribute("tabindex", 0);
         }

@@ -2,9 +2,14 @@ define([], function ()
 {
     let DraggableAcceptorMixin = (superclass) => class extends superclass
     {
-        allowDrop = function (event)
+        allowDrop = function (event, targetDomEle)
         {
-            event.preventDefault();
+            let targetBounds = targetDomEle.getBoundingClientRect();
+
+            if (targetBounds.left < event.clientY && targetBounds.right > event.clientX && targetBounds.top < event.clientY && targetBounds.bottom > event.clientY)
+            {
+                event.preventDefault();
+            }
         }
         drop = function (event, targetDomEle)
         {
