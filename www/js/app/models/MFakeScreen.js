@@ -8,10 +8,10 @@ define(['mixwith', './ModelBase', './DraggableAcceptorMixin', './ScalableMixin']
 
         init = function ()
         {
-            $(window).on('resize', (event) => { this.rescale(event, this.domElement) });
+            this.domElement.addEventListener('wheel', this.rescale);
             this.domElement.addEventListener('drop', (event) => { this.drop(event, this.domElement) });
             this.domElement.addEventListener('dragover', this.allowDrop);
-            this.domElement.setAttribute("style", `transform: scale(${this.calculateZoomRatio()});`);
+            this.domElement.setAttribute("style", `transform: scale(1);`);
             this.domElement.setAttribute("tabindex", 0);
         }
     }

@@ -26,8 +26,6 @@ define([], function ()
             // (event.clientX - targetBounds.x - parseFloat(data[1]) is the distance bewtween the target left edge and the grabbed thing left edge
 
             targetDomEle.appendChild(draggableEle);
-
-            console.log(targetStyle.transform);
             draggableEle.style.transform = `translate(${xTranslate}px, ${yTranslate}px)`
         }
     }
