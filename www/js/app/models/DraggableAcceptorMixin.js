@@ -16,16 +16,19 @@ define([], function ()
             if (targetDomEle === draggableEle) targetDomEle = draggableEle.parentNode; // So you cannot drop it on itself
 
             let targetBounds = targetDomEle.getBoundingClientRect();
-
+            let targetStyle = window.getComputedStyle(targetDomEle);
+            let targetScaleX = targetBounds.width / targetDomEle.offsetWidth;
+            let targetScaleY = targetBounds.height / targetDomEle.offsetHeight;
+            let xTranslate = (event.clientX - targetBounds.x - parseFloat(data[1])) / targetScaleX - parseFloat(targetStyle.borderLeftWidth) - parseFloat(targetStyle.paddingLeft);
+            let yTranslate = (event.clientY - targetBounds.y - parseFloat(data[2])) / targetScaleY - parseFloat(targetStyle.borderTopWidth) - parseFloat(targetStyle.paddingTop);
             // (event.clientX - targetBounds.x) is the distance between mouse and left edge of drop target
             // data[1] is the distance between the grab location and the left edge of the thing that is being grabbed
             // (event.clientX - targetBounds.x - parseFloat(data[1]) is the distance bewtween the target left edge and the grabbed thing left edge
-            //draggableEle.style.left = ((event.clientX - targetBounds.x - parseFloat(data[1])) / targetBounds.width) * 100 + '%';
-            //draggableEle.style.top = ((event.clientY - targetBounds.y - parseFloat(data[2]))  / targetBounds.height) * 100 + '%';
-            draggableEle.style.left = ((event.pageX - targetBounds.x - parseFloat(data[1])) + 'px');
-            draggableEle.style.top = ((event.pageY - parseFloat(data[2])) + 'px');
 
             targetDomEle.appendChild(draggableEle);
+
+            console.log(targetStyle.transform);
+            draggableEle.style.transform = `translate(${xTranslate}px, ${yTranslate}px)`
         }
     }
     return DraggableAcceptorMixin;

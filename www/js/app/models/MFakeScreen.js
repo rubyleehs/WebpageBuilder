@@ -11,7 +11,7 @@ define(['mixwith', './ModelBase', './DraggableAcceptorMixin', './ScalableMixin']
             $(window).on('resize', (event) => { this.rescale(event, this.domElement) });
             this.domElement.addEventListener('drop', (event) => { this.drop(event, this.domElement) });
             this.domElement.addEventListener('dragover', this.allowDrop);
-            this.domElement.setAttribute("style", `scale(${this.calculateZoomRatio()});`);
+            this.domElement.setAttribute("style", `transform: scale(${this.calculateZoomRatio()});`);
             this.domElement.setAttribute("tabindex", 0);
         }
     }
