@@ -5,21 +5,24 @@ define([], function ()
         allowDrop = function (event, targetDomEle)
         {
             let targetBounds = targetDomEle.getBoundingClientRect();
-
-            if (targetBounds.left < event.clientY && targetBounds.right > event.clientX && targetBounds.top < event.clientY && targetBounds.bottom > event.clientY)
+            //console.log((targetBounds.left < event.clientY) + "|" + (targetBounds.right > event.clientX) + "|" + (targetBounds.top < event.clientY) + "|" + (targetBounds.bottom > event.clientY))
+            //console.log(event.clientX + "," + event.clientY);
+            if (targetBounds.left < event.clientX && targetBounds.right > event.clientX && targetBounds.top < event.clientY && targetBounds.bottom > event.clientY)
             {
                 event.preventDefault();
             }
         }
         drop = function (event, targetDomEle)
         {
+            if (document.elementFromPoint(event.clientX, event.clientY) != event.target) return;
             event.preventDefault();
             let data = event.dataTransfer.getData("text/plain").split(',');
             let draggableEle = document.getElementById(data[0]);
-            //let domElement = event.currentTarget;
+            //console.log(draggableEle);
 
             if (targetDomEle === draggableEle) targetDomEle = draggableEle.parentNode; // So you cannot drop it on itself
 
+            //TODO: account for margin/padding/etc on draggableEle itself
             let targetBounds = targetDomEle.getBoundingClientRect();
             let targetStyle = window.getComputedStyle(targetDomEle);
             let targetScaleX = targetBounds.width / targetDomEle.offsetWidth;

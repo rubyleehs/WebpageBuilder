@@ -4,6 +4,13 @@ define([], function ()
     {
         drag = function (event)
         {
+            if (document.elementFromPoint(event.clientX, event.clientY) != event.target)
+            {
+                event.preventDefault();
+                return;
+            }
+
+            console.log("drag start")
             let targetBounds = event.target.getBoundingClientRect();
 
             event.dataTransfer.setData("text/plain",

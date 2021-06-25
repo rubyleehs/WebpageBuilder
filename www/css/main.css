@@ -1,7 +1,23 @@
-#div1, #div2, #divScale{
+#div1, #div2{
     width: 600px;
     height: 400px;
     margin: 10px;
-    padding: 20px;
-    border: 20px solid gray;
+    padding:10px;
+    border: 10px solid gray;
+}
+
+#box{
+    width: 50px;
+    height:50px;
+    background-color: red;
+}
+
+.resizeHandle{
+    background-color: blue;
+    width: 1em;
+    height: 1em;
+    position:absolute; 
+    right: -0.5em; 
+    bottom: -0.5em;
+    cursor: se-resize;
 }
