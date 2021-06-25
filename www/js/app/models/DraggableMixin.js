@@ -4,7 +4,8 @@ define([], function ()
     {
         drag = function (event)
         {
-            if (document.elementFromPoint(event.clientX, event.clientY) != event.target)
+            let draggableEle = document.elementFromPoint(event.clientX, event.clientY);
+            if (draggableEle != event.target)
             {
                 event.preventDefault();
                 return;
@@ -12,6 +13,7 @@ define([], function ()
 
             console.log("drag start")
             let targetBounds = event.target.getBoundingClientRect();
+            //TODO: drag image scale with enviroment
 
             event.dataTransfer.setData("text/plain",
                 event.target.id + ',' +
