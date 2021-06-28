@@ -17,10 +17,10 @@ define([], function ()
             if (document.elementFromPoint(event.clientX, event.clientY) != event.target) return;
             event.preventDefault();
             let data = event.dataTransfer.getData("text/plain").split(',');
-            let draggableEle = document.getElementById(data[0]);
+            let draggableEle = $(`#${data[0]}`);
             //console.log(draggableEle);
 
-            if (targetDomEle === draggableEle) targetDomEle = draggableEle.parentNode; // So you cannot drop it on itself
+            if (targetDomEle === draggableEle) targetDomEle = draggableEle[0].parentNode; // So you cannot drop it on itself
 
             //TODO: account for margin/padding/etc on draggableEle itself
             let targetBounds = targetDomEle.getBoundingClientRect();
@@ -33,8 +33,8 @@ define([], function ()
             // data[1] is the distance between the grab location and the left edge of the thing that is being grabbed
             // (event.clientX - targetBounds.x - parseFloat(data[1]) is the distance bewtween the target left edge and the grabbed thing left edge
 
-            targetDomEle.appendChild(draggableEle);
-            draggableEle.style.transform = `translate(${xTranslate}px, ${yTranslate}px)`
+            targetDomEle.appendChild(draggableEle[0]);
+            draggableEle.css('transform', `translate(${xTranslate}px, ${yTranslate}px)`);
         }
     }
     return DraggableAcceptorMixin;
