@@ -3,7 +3,7 @@ define(function (require)
     var $ = require('jquery'),
         lib = require('./lib'),
         controller = require('./controllers/c1'),
-        modelHandler = new (require('./ModelHandler'));
+        modelHandler = new (require('./models/ModelHandler'));
 
     //It is possible to make it so DOM elements have multiple models attached lol
     models = modelHandler.getModels();

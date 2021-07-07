@@ -2,7 +2,7 @@ define([], function ()
 {
     let DraggableMixin = (superclass) => class extends superclass
     {
-        drag = function (event)
+        drag(event)
         {
             let draggableEle = document.elementFromPoint(event.clientX, event.clientY);
             if (draggableEle != event.target)

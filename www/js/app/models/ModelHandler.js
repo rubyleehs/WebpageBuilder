@@ -4,13 +4,13 @@ define(function (require)
     {
         constructor()
         {
-            this.models = [require('./models/MDraggable'), require('./models/MDraggableAcceptor'), require('./models/MFakeScreen'), require('./models/MBox')];
+            this.models = [require('./MDraggable'), require('./MDraggableAcceptor'), require('./MFakeScreen'), require('./MBox')];
         }
 
         getModels = () =>
         {
             return this.models;
-        };
+        }
         getModel = (name) =>
         {
             for (let i = 0; i < this.models.length; i++)
