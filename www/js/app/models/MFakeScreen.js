@@ -1,18 +1,16 @@
-define(['mixwith', './ModelBase', './DraggableAcceptorMixin', './ScalableMixin'], function (mw, ModelBase, DraggableAcceptorMixin, ScalableMixin)
+define(['./ModelBase', './LDragAccept', './LRescalable'], function (ModelBase, LDragAccept, LRescalable)
 {
-    class MFakeScreen extends mw.mix(ModelBase).with(DraggableAcceptorMixin, ScalableMixin) {
-        constructor(domElement)
+    class MFakeScreen extends ModelBase
+    {
+        constructor()
         {
-            super("Fake Screen Model", domElement);
+            super("Fake Screen Model");
         }
 
-        init = function ()
+        init(domElement)
         {
-            this.domElement.addEventListener('wheel', this.rescale);
-            this.domElement.addEventListener('drop', (event) => { this.drop(event, this.domElement) });
-            this.domElement.addEventListener('dragover', (event) => { this.allowDrop(event, this.domElement) });
-            this.domElement.setAttribute("style", `transform: scale(1);`);
-            this.domElement.setAttribute("tabindex", 0);
+            new LDragAccept().init(domElement);
+            new LRescalable().init(domElement);
         }
     }
 

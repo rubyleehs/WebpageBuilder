@@ -1,23 +1,16 @@
-define(['mixwith', './ModelBase', './DraggableMixin', './ResizableMixin'], function (mw, ModelBase, DraggableMixin, ResizableMixin)
+define(['./ModelBase', './LDragMove', './LResizable'], function (ModelBase, LDragMove, LResizable)
 {
-    class MBox extends mw.mix(ModelBase).with(DraggableMixin, ResizableMixin) {
-        constructor(domElement)
+    class MBox extends ModelBase
+    {
+        constructor()
         {
-            super("Box Model", domElement);
+            super("Box Model");
         }
 
-        init = function ()
+        init(domElement)
         {
-            this.domElement.addEventListener('dragstart', this.drag);
-            this.domElement.setAttribute("draggable", "true");
-
-
-            this.initResizableMixin(this.domElement);
-            this.domElement.addEventListener('focus', this.showResizeHandle);
-            this.domElement.addEventListener('blur', this.hideResizeHandle);
-            this.domElement.setAttribute("tabindex", 0);
-
-            this.domElement.setAttribute("style", `position:absolute; transfrom:translate(0px,0px); width:${this.domElement.clientWidth}px; height:${this.domElement.clientHeight}px;`);
+            new LDragMove().init(domElement);
+            new LResizable().init(domElement);
         }
     }
 

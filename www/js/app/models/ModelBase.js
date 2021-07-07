@@ -2,10 +2,9 @@ define(function ()
 {
     class ModelBase
     {
-        constructor(modelName, domElement)
+        constructor(modelName)
         {
             this.modelName = modelName;
-            this.domElement = domElement;
         }
 
         getModelName = function ()
@@ -13,12 +12,7 @@ define(function ()
             return this.modelName;
         }
 
-        getDomElement = function ()
-        {
-            return this.domElement;
-        }
-
-        init = function ()
+        init()
         {
             //This function should be used to add listeners to stuff and set DomElementAttributes.
             console.log("Missing init() in model, likely missing listeners. Please declare in model and override this message");

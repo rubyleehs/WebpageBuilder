@@ -4,7 +4,7 @@ define(function (require)
     {
         constructor()
         {
-            this.models = [require('./MDraggable'), require('./MDraggableAcceptor'), require('./MFakeScreen'), require('./MBox')];
+            this.models = [require('./MDragSource'), require('./MFakeScreen'), require('./MBox')];
         }
 
         getModels = () =>

@@ -15,7 +15,8 @@ define(function (require)
             let domElements = $(`*[model='${models[i].name}']`);
             for (let ii = 0; ii < domElements.length; ii++)
             {
-                new models[i](domElements[ii]).init();
+                domElements[ii].setAttribute("original-copy", true) //check if works
+                new models[i]().init($(domElements[ii]));
             }
         }
 
